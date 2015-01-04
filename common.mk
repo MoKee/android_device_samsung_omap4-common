@@ -20,11 +20,14 @@ DEVICE_PACKAGE_OVERLAYS += $(COMMON_PATH)/overlay
 
 # Omap4 Packages
 PRODUCT_PACKAGES += \
-	libedid \
-	libion_ti \
+    libedid \
+    libion_ti \
     libstagefrighthw \
     smc_pa_ctrl \
-    tf_daemon
+    tf_daemon \
+    libcorkscrew \
+    pvrsrvinit \
+    libPVRScopeServices.so
 
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
@@ -48,7 +51,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SamsungExynos4RIL \
     ro.telephony.call_ring.multiple=false \
     ro.telephony.call_ring.delay=3000 \
-    ro.bq.gpu_to_cpu_unsupported=1
+    ro.bq.gpu_to_cpu_unsupported=1 \
+    camera2.portability.force_api=1
 
 # SGX540 is slower with the scissor optimization enabled
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -58,6 +62,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
 
+# Include omap4 specific parts
 $(call inherit-product, hardware/ti/omap4xxx/omap4.mk)
 
 # Include non-opensource parts
